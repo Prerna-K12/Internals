@@ -1,0 +1,36 @@
+name: MLOps Project Check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r MLOPs_Lab_CIE/requirements.txt
+
+      - name: Run Training Script
+        run: |
+          cd MLOPs_Lab_CIE
+          python src/train.py
+
+      - name: Check Result Files
+        run: |
+          test -f MLOPs_Lab_CIE/results/step1_tracking.json
+          echo "✅ step1_tracking.json exists"
+
+      - name: Success
+        run: echo "Workflow completed successfully!"

@@ -1,4 +1,4 @@
-name: MLOps Project Check
+name: MLOps Project Grader
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test-project:
+  grade-project:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,10 +27,39 @@ jobs:
           cd MLOPS_LAB
           python src/train.py
 
-      - name: Check Result Files
+      - name: Grade Project
         run: |
-          test -f MLOPS_LAB/results/step1_tracking.json
-          echo "✅ step1_tracking.json exists"
+          score=0
 
-      - name: Success
-        run: echo "Workflow completed successfully!"
+          echo "========== GRADING =========="
+
+          if [ -f MLOPS_LAB/results/step1_tracking.json ]; then
+            echo "✅ Step 1 Tracking: 25/25"
+            score=$((score+25))
+          else
+            echo "❌ Step 1 Tracking: 0/25"
+          fi
+
+          if [ -f MLOPS_LAB/results/step2_serving.json ]; then
+            echo "✅ Step 2 Serving: 25/25"
+            score=$((score+25))
+          else
+            echo "❌ Step 2 Serving: 0/25"
+          fi
+
+          if [ -f MLOPS_LAB/results/step3_monitoring.json ]; then
+            echo "✅ Step 3 Monitoring: 25/25"
+            score=$((score+25))
+          else
+            echo "❌ Step 3 Monitoring: 0/25"
+          fi
+
+          if [ -f MLOPS_LAB/results/step4_retraining.json ]; then
+            echo "✅ Step 4 Retraining: 25/25"
+            score=$((score+25))
+          else
+            echo "❌ Step 4 Retraining: 0/25"
+          fi
+
+          echo ""
+          echo "🎯 FINAL SCORE: $score / 100"

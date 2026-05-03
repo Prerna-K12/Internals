@@ -1,0 +1,23 @@
+{
+  "total_predictions": 50,
+  "mean_prediction": 52.1071,
+  "drift_detected": false,
+  "alerts": [
+    {
+      "feature": "model_params_millions",
+      "train_mean": 1620.2,
+      "live_mean": 1348.3,
+      "shift": 271.9,
+      "threshold": 500,
+      "status": "OK"
+    },
+    {
+      "feature": "queue_depth",
+      "train_mean": 7.76,
+      "live_mean": 8.5,
+      "shift": 0.74,
+      "threshold": 5,
+      "status": "OK"
+    }
+  ]
+}

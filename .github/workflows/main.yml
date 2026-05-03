@@ -29,7 +29,7 @@ jobs:
 
       - name: Check Result Files
         run: |
-          test -f MLOPS_ALB/results/step1_tracking.json
+          test -f MLOPS_LAB/results/step1_tracking.json
           echo "✅ step1_tracking.json exists"
 
       - name: Success

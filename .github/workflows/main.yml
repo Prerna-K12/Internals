@@ -20,16 +20,16 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r MLOPs_Lab_CIE/requirements.txt
+          pip install -r MLOPS_LAB/requirements.txt
 
       - name: Run Training Script
         run: |
-          cd MLOPs_Lab_CIE
+          cd MLOPS_LAB
           python src/train.py
 
       - name: Check Result Files
         run: |
-          test -f MLOPs_Lab_CIE/results/step1_tracking.json
+          test -f MLOPS_ALB/results/step1_tracking.json
           echo "✅ step1_tracking.json exists"
 
       - name: Success
